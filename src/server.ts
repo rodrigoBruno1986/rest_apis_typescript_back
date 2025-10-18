@@ -22,8 +22,10 @@ const corsOptions: CorsOptions = {
     origin: (origin, callback) => {
         console.log('origin: ', origin);
         
-        // Permitir el frontend específico y localhost:5173 para desarrollo
-        if (origin === process.env.FRONTEND_URL || origin === 'http://localhost:5173') {
+        // Permitir el frontend específico, localhost:5173 para desarrollo y Vercel
+        if (origin === process.env.FRONTEND_URL || 
+            origin === 'http://localhost:5173' || 
+            origin === 'https://rest-apis-typescript-front-end.vercel.app') {
             console.log('✅ Origen permitido:', origin);
             callback(null, true);
         } else {
