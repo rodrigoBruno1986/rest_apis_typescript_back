@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { createProduct, getProducts, getProductById, updateProduct, updateAvailable, deleteProduct, } from "./handlers/Product";
+import { createProduct, getProducts, getProductById, updateProduct, updateAvailable, deleteProduct, } from "./handlers/Product.js";
 import { body, param } from "express-validator";
-import { handleValidationErrors } from "./middleware/validation";
+import { handleValidationErrors } from "./middleware/validation.js";
 const router = Router();
 /**
  * @swagger
