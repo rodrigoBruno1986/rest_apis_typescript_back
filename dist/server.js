@@ -38,24 +38,9 @@ server.use(express.json());
 server.use(morgan('dev'));
 server.use(cors(corsOptions));
 server.use("/api/products", productRouter);
-// Inicializar servidor después de conectar a la DB
-async function startServer() {
-    try {
-        await connectDB();
-        const PORT = process.env.PORT || 3000;
-        server.listen(PORT, () => {
-            console.log(colors.bgBlue.white(`Servidor corriendo en puerto ${PORT}`));
-            console.log(colors.bgGreen.white("Servidor listo para recibir peticiones"));
-        });
-    }
-    catch (error) {
-        console.log(colors.bgRed.white("Error al iniciar servidor"), error);
-        process.exit(1);
-    }
-}
 // Solo ejecutar en producción, no en tests
 if (process.env.NODE_ENV !== "test") {
-    startServer();
+    connectDB();
 }
 server.get("/api", (req, res) => {
     res.json({ message: "desde la ruta api" });
